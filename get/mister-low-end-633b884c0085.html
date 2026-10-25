@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>Download Mister Low End | Tully EDM Vibe</title>
+<style>
+:root{--bg:#0b0c10;--card:#14161d;--fg:#eceef4;--muted:#9aa0b2;--pink:#ff2d8a;--cyan:#2de2e6;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% -10%,#1d1f2b 0%,var(--bg) 60%);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;padding:48px 16px}
+main{max-width:640px;margin:0 auto}
+.brand{font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--cyan)}
+h1{font-size:clamp(28px,6vw,40px);margin:8px 0 4px;line-height:1.15}
+h1 span{color:var(--pink)}
+.tag{color:var(--muted);margin:0 0 28px}
+.card{background:var(--card);border:1px solid #252836;border-radius:14px;padding:24px;margin-bottom:20px}
+.btn{display:block;text-align:center;background:var(--pink);color:#fff;font-weight:800;font-size:18px;letter-spacing:.04em;text-decoration:none;padding:18px 20px;border-radius:12px;box-shadow:0 10px 30px rgba(255,45,138,.35)}
+.btn:hover{filter:brightness(1.08)}
+.small{color:var(--muted);font-size:14px;margin:12px 0 0;text-align:center}
+h2{font-size:18px;margin:0 0 12px}
+ol{margin:0;padding-left:22px} li{margin:6px 0}
+code{background:#0e1015;border:1px solid #252836;border-radius:6px;padding:1px 6px;font-size:14px}
+a{color:var(--cyan)}
+footer{color:var(--muted);font-size:13px;text-align:center;margin-top:28px}
+
+.btn[disabled]{opacity:.6;cursor:wait} button.btn{width:100%;border:0;cursor:pointer;font-family:inherit}
+.bar{height:6px;background:#252836;border-radius:6px;margin-top:14px;overflow:hidden;display:none}.bar i{display:block;height:100%;width:0;background:var(--cyan)}
+.err{color:#ff8fb8;text-align:center;margin:12px 0 0}</style></head><body><main>
+<div class="brand">Tully EDM Vibe</div>
+<h1>Thanks! Here is <span>Mister Low End</span></h1>
+<p class="tag">Psytrance &amp; techno bassline + kick engine. Your receipt has been emailed to you by Stripe.</p>
+<div class="card">
+<button class="btn" id="dl">DOWNLOAD MISTER LOW END FOR macOS</button>
+<div class="bar" id="bar"><i id="fill"></i></div>
+<p class="err" id="err" hidden></p>
+<p class="small">Audio Unit + VST3 · macOS 12 or later · Apple Silicon and Intel. Bookmark this page (with its full address) so you can download again later.</p>
+</div>
+<div class="card">
+<h2>Install in one minute</h2>
+<ol>
+<li>Open the downloaded <code>MisterLowEnd-macOS.dmg</code> disk image (double-click it).</li>
+<li>Quit Logic Pro, Ableton or any other music app.</li>
+<li>Double-click <b>Install Mister Low End</b> and click through Apple's installer.</li>
+<li>Open your music app. Mister Low End appears in your Audio Unit and VST3 plug-in lists (maker: Tully EDM Vibe).</li>
+</ol>
+<p class="small">Signed and notarized by Apple, so macOS opens it with no security warnings. No scripts, no Terminal.</p>
+</div>
+<div class="card">
+<h2>Need help?</h2>
+<p style="margin:0">Email <a href="mailto:info@tullyedmvibe.com">info@tullyedmvibe.com</a> and a real producer will answer. Keep your Stripe receipt as proof of purchase.</p>
+</div>
+<footer>© 2026 Tully EDM Vibe · <a href="https://www.tullyedmvibe.com" rel="noreferrer">tullyedmvibe.com</a></footer>
+</main>
+<script>
+(function(){
+  var FILE="../files/9e86ca0b28de7195.bin", NAME="MisterLowEnd-macOS.dmg";
+  var btn=document.getElementById('dl'), err=document.getElementById('err'), bar=document.getElementById('bar'), fill=document.getElementById('fill');
+  var k=new URLSearchParams(location.search).get('k');
+  function fail(m){err.textContent=m; err.hidden=false; btn.disabled=false; btn.textContent='TRY AGAIN';}
+  if(!k){btn.disabled=true; fail('This download page needs the full link from your purchase. Check your email from Tully EDM Vibe / Stripe, or write to info@tullyedmvibe.com.'); btn.disabled=true; return;}
+  function b64u(s){s=s.replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4)s+='='; var b=atob(s),a=new Uint8Array(b.length); for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i); return a;}
+  btn.addEventListener('click', async function(){
+    err.hidden=true; btn.disabled=true; btn.textContent='DOWNLOADING...'; bar.style.display='block';
+    try{
+      var r=await fetch(FILE,{cache:'no-store'}); if(!r.ok) throw new Error('HTTP '+r.status);
+      var total=+r.headers.get('content-length')||0, rd=r.body.getReader(), parts=[], got=0;
+      for(;;){var x=await rd.read(); if(x.done)break; parts.push(x.value); got+=x.value.length; if(total) fill.style.width=(got*100/total)+'%';}
+      var buf=new Uint8Array(got), o=0; parts.forEach(function(p){buf.set(p,o); o+=p.length;});
+      btn.textContent='PREPARING...';
+      var key=await crypto.subtle.importKey('raw', b64u(k), 'AES-GCM', false, ['decrypt']);
+      var plain=await crypto.subtle.decrypt({name:'AES-GCM', iv:buf.slice(0,12)}, key, buf.slice(12));
+      var url=URL.createObjectURL(new Blob([plain],{type:'application/x-apple-diskimage'}));
+      var a=document.createElement('a'); a.href=url; a.download=NAME; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){URL.revokeObjectURL(url);}, 60000);
+      fill.style.width='100%'; btn.textContent='DOWNLOADED - CHECK YOUR DOWNLOADS FOLDER'; btn.disabled=false;
+    }catch(e){ fail('The download could not be unlocked ('+(e.message||e.name)+'). Please use the exact link from your purchase, or email info@tullyedmvibe.com.'); }
+  });
+})();
+</script>
+</body></html>
